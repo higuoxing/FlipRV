@@ -1,0 +1,25 @@
+[tasks]
+bmc
+cover
+prove
+
+[options]
+bmc: mode bmc
+bmc: depth 100
+cover: mode cover
+cover: depth 100
+prove: mode prove
+
+[engines]
+smtbmc
+
+[script]
+read_verilog -sv -DFORMAL uart_tx.v
+# Inverting the logic: Set a tiny frequency so 1 bit = 4 clock cycles
+# Formula: CLK_FREQ / BAUD_RATE = ClocksPerBit
+# 40 / 10 = 4 cycles per bit
+chparam -set CLK_FREQ 40 -set BAUD_RATE 10 uart_tx
+prep -top uart_tx
+
+[files]
+uart_tx.v
