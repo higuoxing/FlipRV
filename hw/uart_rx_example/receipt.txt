@@ -1,0 +1,4 @@
+# Verilog list for Yosys (paths relative to repo root)
+rtl/uart/uart_tx.v
+rtl/uart/uart_rx.v
+hw/uart_rx_example/top.v
