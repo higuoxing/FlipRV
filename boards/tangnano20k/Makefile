@@ -27,8 +27,9 @@ ifeq ($(filter help clean,$(MAKECMDGOALS)),)
   ifeq ($(HW),)
     $(error HW is required. Example: make HW=uart_tx_example)
   endif
-  # Simplified receipt parsing: filter out comments (#) and get absolute paths
-  SOURCES := $(shell grep -v '^[#]' $(RECEIPT) | awk '{print "$(REPO_ROOT)/" $$1}')
+  # Use \# to prevent Make from treating it as a comment
+  # Use addprefix to handle the pathing safely on the Make side
+  SOURCES := $(addprefix $(REPO_ROOT)/, $(shell grep -v '^\#' $(RECEIPT) | awk '{print $$1}'))
 endif
 
 .PHONY: all flash bitstream help clean
