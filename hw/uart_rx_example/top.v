@@ -3,7 +3,7 @@
 
 module top (
    input wire  clk,   // 27 MHz
-   input wire  reset, // Active high reset
+   input wire  s1, // Active high reset
    input wire  uart_rxd,
    output wire uart_txd
 );
@@ -11,6 +11,8 @@ module top (
   localparam integer CLK_FREQ  = 27_000_000;
   localparam integer BAUD_RATE = 115_200;
   localparam integer BUF_SIZE  = 256;
+
+  wire               reset = s1;
 
   // UART Interconnects
   wire [7:0]         rx_data;

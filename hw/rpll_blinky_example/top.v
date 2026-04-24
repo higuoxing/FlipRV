@@ -3,12 +3,13 @@
 
 module top (
    input wire        clk,
-   input wire        reset,
+   input wire        s1,
    output wire [5:0] led
 );
 
   wire clk_sys;
   wire pll_lock;
+  wire reset = s1;
 
   // Frequency Calculation:
   // input params are calculated as described in GOWIN doc (UG286-1.7E_Gowin Clock User Guide)

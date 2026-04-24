@@ -6,9 +6,11 @@
 // Submodule uart_tx latches tx_data when tx_start is high in IDLE — load in LOAD, pulse in START.
 module top (
   input  wire clk,
-  input  wire reset,
+  input  wire s1,
   output wire uart_txd
 );
+
+  wire reset = s1;
 
   localparam integer ClkFreq = 27_000_000;
   localparam integer BaudRate = 115_200;
